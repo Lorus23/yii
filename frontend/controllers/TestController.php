@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use yii\web\Controller;
 use frontend\models\Test;
+use Yii;
 
 class TestController extends Controller
 {
@@ -11,7 +12,8 @@ class TestController extends Controller
     {
        // $list = Test::getNewsList();
 
-        $list =  Test::getNewsList();
+        $max = Yii::$app->params['maxNewsInList'];
+        $list =  Test::getNewsList($max);
 
         return $this->render('index',[
             'list'=>$list,

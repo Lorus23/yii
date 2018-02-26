@@ -9,12 +9,25 @@
 namespace frontend\models;
 
 use Yii;
+use frontend\components\StringHelper;
 
 class Test
 {
-    public static function getNewsList()
+    public static function getNewsList($max)
     {
-        $sql ='SELECT * FROM news';
-        return Yii::$app->db->createCommand($sql)->queryAll();
+        $max = intval($max);
+        $sql ='SELECT * FROM news LIMIT '.$max;
+        $result = Yii::$app->db->createCommand($sql)->queryAll();
+
+        $helper = new StringHelper();
+
+
+
+        foreach ($result as $item) {
+            $item['content'] = $helper->getShort($item['content']);
+
+        }
+
+        return $result;
     }
 }
