@@ -13,6 +13,11 @@ use frontend\components\StringHelper;
 
 class Test
 {
+    /**
+     * @param integer $max
+     * @return array $result
+     *
+     */
     public static function getNewsList($max)
     {
         $max = intval($max);
@@ -21,13 +26,26 @@ class Test
 
         $helper = new StringHelper();
 
-
+        if (!empty($result) && is_array($result)){
 
         foreach ($result as $item) {
-            $item['content'] = $helper->getShort($item['content']);
+            $item['content'] = $helper->getShort($item['content'], 50);
 
+        }
         }
 
         return $result;
+    }
+
+    /**
+     * @param integer $id
+     * @return array
+     */
+    public static function getNewsById($id)
+    {
+        $id = intval($id);
+        $sql = 'SELECT * FROM news WHERE id = '.$id;
+        return Yii::$app->db->createCommand($sql)->queryOne();
+
     }
 }

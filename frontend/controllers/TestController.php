@@ -20,5 +20,15 @@ class TestController extends Controller
         ]);
     }
 
+    public function actionView($id)
+    {
+
+      $item = Test::getNewsById($id);
+
+        return $this->render('news',[
+            'item'=>$item,
+        ]);
+    }
+
 }
 

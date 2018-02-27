@@ -30,6 +30,18 @@ return [
                 ],
             ],
         ],
+        'mailer' => [
+            'class' => 'yii\log\FileTarget',
+            'useFileTransport' => false,
+            'transport' =>[
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => 'bazarkanovsayat@gmail.com',
+                'password' => '',
+                'port' => '587',
+                'encryption' => 'tls'
+            ]
+        ]
     ],
     'params' => $params,
 ];
