@@ -10,10 +10,11 @@ return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'language' => 'kz',
+    'language' => 'ru',
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
         'request' => [
+            'enableCsrfValidation' => false,
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
